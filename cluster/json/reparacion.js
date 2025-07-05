@@ -298,17 +298,32 @@ function exportarFilaSeleccionadaExcel() {
   XLSX.writeFile(wb, 'reparacion_individual.xlsx');
 }
 
-// === GUARDAR BACKUP EN LOCALSTORAGE ===
-function guardarBackup(tipo, datos) {
-  const copias = JSON.parse(localStorage.getItem('copiasSeguridad')) || [];
+// === GUARDAR JSON DE REPARACIONES ===
+document.getElementById("btn-guardar-json").addEventListener("click", () => {
+  const datos = localStorage.getItem("reparaciones") || "[]";
+  const blob = new Blob([datos], { type: "application/json" });
+  const enlace = document.createElement("a");
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = "reparaciones.json";
+  enlace.click();
+});
+
+// === AGREGAR BACKUP EN LOCALSTORAGE ===
+document.getElementById("btn-agregar-backup").addEventListener("click", () => {
+  const datos = JSON.parse(localStorage.getItem("reparaciones") || "[]");
+  const copias = JSON.parse(localStorage.getItem("copiasSeguridad") || "[]");
+
   const nuevaCopia = {
-    fecha: new Date().toLocaleString('es-CO'),
-    tipo,
+    fecha: new Date().toLocaleString("es-CO"),
+    tipo: "reparaciones",
     datos
   };
+
   copias.push(nuevaCopia);
-  localStorage.setItem('copiasSeguridad', JSON.stringify(copias));
-}
+  localStorage.setItem("copiasSeguridad", JSON.stringify(copias));
+  alert("✅ Copia de seguridad guardada correctamente.");
+});
+
 
 // === EXPORTAR FACTURA POS DESDE FILA SELECCIONADA ===
 function exportarSeleccionadaComoImagen(tipo = null) {
