@@ -313,7 +313,7 @@ function exportarSeleccionadaComoImagen(tipo = null) {
   <div class="factura">
     <!-- LOGO PARTE SUPERIOR -->
 <div class="center">
-  <img src="../../../img/a1.png" alt="Logo Fixbionic" class="logo" />
+  <img src="../../data/img/a1.png" alt="Logo Fixbionic" class="logo" />
 </div>
 
 
