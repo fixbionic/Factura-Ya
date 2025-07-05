@@ -1,0 +1,26 @@
+    body {
+      overflow-x: hidden;
+    }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      background-color: #198754;
+      color: white;
+      padding: 1rem;
+    }
+    .sidebar h4 {
+      margin-bottom: 1.5rem;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .main-content {
+      margin-left: 240px;
+      padding: 2rem;
+    }
