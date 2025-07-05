@@ -57,21 +57,22 @@
         <div class="col-md-6"><input type="text" id="contactoAcc" class="form-control" placeholder="Número de Contacto" /></div>
       </div>
 
-      <!-- Botones -->
+      <!-- Botones del formulario -->
       <div class="btn-group mt-3 flex-wrap">
         <button type="submit" class="btn btn-success btn-sm">Agregar</button>
         <button type="button" id="btnEditar" class="btn btn-warning btn-sm">Editar</button>
         <button type="button" id="btnEliminar" class="btn btn-danger btn-sm">Eliminar</button>
         <button type="button" id="exportarImagenBtn" class="btn btn-dark btn-sm">Imagen</button>
         <button type="button" id="exportarExcelBtn" class="btn btn-outline-success btn-sm">Excel</button>
-        <button type="button" id="exportarJsonBtn" class="btn btn-outline-secondary btn-sm">JSON</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCopiasJson">
+          Copia y JSON
+        </button>
         <input type="file" id="importarBD" accept=".json" class="form-control form-control-sm ms-2" style="max-width: 200px;" />
       </div>
     </form>
 
-    <!-- Tabla y Métricas -->
+    <!-- Tabla de accesorios -->
     <div class="row g-4">
-      <!-- Tabla de Accesorios -->
       <div class="col-lg-8">
         <div class="table-responsive bg-white p-3 rounded shadow mb-4">
           <table class="table table-bordered table-striped text-center align-middle">
@@ -92,7 +93,6 @@
         </div>
       </div>
 
-      <!-- Métricas y Gráfico -->
       <div class="col-lg-4">
         <div class="bg-white p-4 rounded shadow text-center h-100">
           <h5 class="fw-bold text-success">Métricas del Inventario</h5>
@@ -117,6 +117,54 @@
       </div>
     </div>
   </main>
+
+  <!-- Modal unificado: Copia y JSON -->
+  <div class="modal fade" id="modalCopiasJson" tabindex="-1" aria-labelledby="modalCopiasJsonLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border border-dark shadow rounded-3">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="modalCopiasJsonLabel">Exportar Base de Datos</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p class="mb-4">¿Qué deseas hacer con la base de datos actual?</p>
+          <div class="d-flex justify-content-center gap-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-success" id="btn-exportar-json">Guardar JSON</button>
+            <button type="button" class="btn btn-primary" id="btn-agregar-copia">Agregar copia de seguridad</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para ver copias guardadas -->
+  <div class="modal fade" id="modalCopias" tabindex="-1" aria-labelledby="modalCopiasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border border-dark">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="modalCopiasLabel">Copias de Seguridad Guardadas</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered text-center">
+            <thead class="table-primary">
+              <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-copias-body"></tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="../json/acsesorios.js" defer></script>

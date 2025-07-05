@@ -1,4 +1,6 @@
-/* ======= GENERAL ======= */
+/* ================================
+   ESTILOS GENERALES
+================================== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f8f9fa;
@@ -14,7 +16,9 @@ h3 {
   color: #333;
 }
 
-/* ======= SIDEBAR ======= */
+/* ================================
+   SIDEBAR
+================================== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -38,13 +42,17 @@ h3 {
   color: #d1e7dd;
 }
 
-/* ======= CONTENIDO PRINCIPAL ======= */
+/* ================================
+   CONTENIDO PRINCIPAL
+================================== */
 .main-content {
   margin-left: 240px;
   padding: 2rem;
 }
 
-/* ======= FORMULARIO GENERAL ======= */
+/* ================================
+   FORMULARIOS
+================================== */
 form {
   background: white;
   padding: 15px;
@@ -74,14 +82,16 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* ======= FORMULARIO FLEXIBLE DE ACCESORIOS ======= */
+/* Formularios en bloque flexible para accesorios */
 #registro-accesorios form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-/* ======= TABLAS ======= */
+/* ================================
+   TABLAS
+================================== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -105,7 +115,9 @@ th {
   font-weight: 600;
 }
 
-/* ======= ESTADOS DE ACCESORIOS (para uso condicional futuro) ======= */
+/* ================================
+   ESTADOS (para filas condicionales)
+================================== */
 .estado-entregado {
   background-color: #c8e6c9;
 }
@@ -122,7 +134,9 @@ th {
   background-color: #ffe082 !important;
 }
 
-/* ======= CONTENEDORES ======= */
+/* ================================
+   CONTENEDORES Y SECCIONES
+================================== */
 .contenedor {
   display: flex;
   flex-wrap: wrap;
@@ -137,7 +151,9 @@ th {
   flex: 1 1 35%;
 }
 
-/* ======= MÉTRICAS ======= */
+/* ================================
+   MÉTRICAS
+================================== */
 #metricas table {
   margin-top: 20px;
   background: white;
@@ -145,7 +161,9 @@ th {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* ======= RESPONSIVE ======= */
+/* ================================
+   RESPONSIVE DESIGN
+================================== */
 @media screen and (max-width: 768px) {
   .main-content {
     margin-left: 0;

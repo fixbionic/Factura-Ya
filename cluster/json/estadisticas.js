@@ -1,59 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Verifica si ya hay backups guardados en localStorage, si no, crea dos ejemplos
-    if (!localStorage.getItem('fixbionic_backups')) {
-        localStorage.setItem('fixbionic_backups', JSON.stringify([
-            { fecha: '2025-07-01', nombre: 'backup_01.json' },
-            { fecha: '2025-07-03', nombre: 'backup_02.json' }
-        ]));
-    }
+  const tablaBackups = document.getElementById('tabla-backups');
+  const totalCopias = document.getElementById('total-copias');
 
-    const backups = JSON.parse(localStorage.getItem('fixbionic_backups')) || [];
-    const tablaBackups = document.getElementById('tabla-backups');
-    const totalCopias = document.getElementById('total-copias');
+  const backups = JSON.parse(localStorage.getItem('copiasSeguridad')) || [];
 
-    // Limpia y llena la tabla con las copias de seguridad
-    tablaBackups.innerHTML = '';
-    backups.forEach((bk, i) => {
-        const fila = document.createElement('tr');
-        fila.innerHTML = `
-      <td>${i + 1}</td>
+  tablaBackups.innerHTML = '';
+
+  backups.forEach((bk, index) => {
+    const fila = document.createElement('tr');
+    const nombreArchivo = `backup_${bk.tipo.toLowerCase()}_${index + 1}.json`;
+
+    const blob = new Blob([JSON.stringify(bk.datos, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    fila.innerHTML = `
+      <td>${index + 1}</td>
       <td>${bk.fecha}</td>
-      <td>${bk.nombre}</td>
+      <td>${bk.tipo}</td>
       <td>
-        <button class="btn btn-sm btn-outline-primary">Descargar</button>
+        <a href="${url}" download="${nombreArchivo}" class="btn btn-sm btn-outline-primary">Descargar</a>
       </td>
     `;
-        tablaBackups.appendChild(fila);
-    });
+    tablaBackups.appendChild(fila);
+  });
 
-    // Actualiza el total de copias
-    totalCopias.textContent = backups.length;
+  totalCopias.textContent = backups.length;
 
-    // Simula datos de métricas del inventario
-    document.getElementById('total-registros').textContent = 12;
-    document.getElementById('total-unidades').textContent = 48;
-    document.getElementById('valor-total').textContent = '150,000';
+  // Simula datos de métricas (puedes reemplazar con datos reales)
+  document.getElementById('total-registros').textContent = 12;
+  document.getElementById('total-unidades').textContent = 48;
+  document.getElementById('valor-total').textContent = '150,000';
 
-    // Genera el gráfico con Chart.js
-    const ctx = document.getElementById('graficoAccesorios').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Cables', 'Audífonos', 'Cargadores'],
-            datasets: [{
-                label: 'Inventario',
-                data: [12, 15, 21],
-                backgroundColor: ['#198754', '#0d6efd', '#ffc107']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
-            }
+  // Gráfico de ejemplo para Accesorios
+  const ctx = document.getElementById('graficoAccesorios').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Cables', 'Audífonos', 'Cargadores'],
+      datasets: [{
+        label: 'Inventario',
+        data: [12, 15, 21],
+        backgroundColor: ['#198754', '#0d6efd', '#ffc107']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top'
         }
-    });
+      }
+    }
+  });
 });
